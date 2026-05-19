@@ -1,6 +1,6 @@
 output "bucket_name" {
   description = "Nombre del bucket creado para el frontend"
-  value       = aws_s3_bucket.frontend.bucket
+  value       = data.aws_s3_bucket.frontend.bucket
 }
 
 output "website_url" {
@@ -10,5 +10,5 @@ output "website_url" {
 
 output "terraform_state_bucket" {
   description = "Nombre del bucket para el estado de Terraform"
-  value       = aws_s3_bucket.terraform_state.bucket
+  value       = data.aws_s3_bucket.terraform_state.bucket
 }
