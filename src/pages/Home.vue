@@ -21,6 +21,7 @@ const fetchChanges = async () => {
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }
+    console.log("API response status:", response.status);
     const data = await response.json();
     changes.value = Array.isArray(data) ? data : data.data || [];
   } catch (err) {
