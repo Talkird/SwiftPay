@@ -54,10 +54,35 @@ onMounted(() => {
     <!-- Header -->
     <header class="border-b border-gray-200 bg-white sticky top-0 z-50">
       <div class="max-w-4xl mx-auto px-6 py-8">
-        <h1 class="text-4xl font-bold text-gray-900">Infrastructure Costs</h1>
-        <p class="text-gray-600 mt-2">
-          Track changes in your cloud infrastructure costs
-        </p>
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-4xl font-bold text-gray-900">
+              Infrastructure Costs
+            </h1>
+            <p class="text-gray-600 mt-2">
+              Track changes in your cloud infrastructure costs
+            </p>
+          </div>
+          <button
+            @click="fetchChanges"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium whitespace-nowrap"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
+            </svg>
+            Refresh
+          </button>
+        </div>
       </div>
     </header>
 
