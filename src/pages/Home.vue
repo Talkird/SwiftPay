@@ -23,7 +23,8 @@ const fetchChanges = async () => {
     }
     console.log("API response status:", response.status);
     const data = await response.json();
-    changes.value = Array.isArray(data) ? data : data.data || [];
+    changes.value = Array.isArray(data) ? data : data.responses || [];
+    console.log(data);
   } catch (err) {
     error.value = err instanceof Error ? err.message : "Failed to fetch data";
     console.error("Error fetching changes:", err);
