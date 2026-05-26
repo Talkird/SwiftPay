@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { marked } from "marked";
+import { useToast } from "@nuxt/ui/runtime/composables/useToast.js";
+
+const toast = useToast();
 
 interface CostChange {
   _id?: string;
@@ -24,6 +27,11 @@ const fetchChanges = async () => {
     );
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
+
+      toast.add({
+        title: "Error",
+        description: `Failed to fetch data: ${response.statusText}`,
+      });
     }
     console.log("API response status:", response.status);
     const data = await response.json();
@@ -32,6 +40,12 @@ const fetchChanges = async () => {
   } catch (err) {
     error.value = err instanceof Error ? err.message : "Failed to fetch data";
     console.error("Error fetching changes:", err);
+    toast.add({
+      title: "Error",
+      description: error.value,
+      icon: "i-lucide-x-circle",
+      color: "error",
+    });
   } finally {
     loading.value = false;
   }
@@ -64,10 +78,10 @@ onMounted(() => {
       <div class="max-w-4xl mx-auto px-6 py-8">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="text-4xl font-bold text-gray-900">
+            <h1 class="md:text-3xl text-xl font-bold text-gray-900">
               Infrastructure Costs
             </h1>
-            <p class="text-gray-600 mt-2">
+            <p class="text-sm md:text-base text-gray-600 mt-2">
               Track changes in your cloud infrastructure costs
             </p>
           </div>
