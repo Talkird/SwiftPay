@@ -179,19 +179,10 @@ onMounted(() => {
                     <div
                       class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100"
                     >
-                      <svg
-                        class="h-6 w-6 text-blue-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+                      <UIcon
+                        name="i-lucide-circle-dollar-sign"
+                        class="size-8 text-primary"
+                      />
                     </div>
                   </div>
                   <time class="text-sm font-medium text-gray-500">
@@ -199,11 +190,7 @@ onMounted(() => {
                   </time>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                  <UBadge
-                    v-if="change.author"
-                    color="neutral"
-                    variant="outline"
-                  >
+                  <UBadge v-if="change.author" color="primary" variant="subtle">
                     {{ change.author }}
                   </UBadge>
                   <UBadge
