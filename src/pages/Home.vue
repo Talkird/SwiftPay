@@ -26,13 +26,14 @@ const fetchChanges = async () => {
       "https://6i0kggdgzh.execute-api.us-east-1.amazonaws.com/responses",
     );
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
-
       toast.add({
         title: "Error",
         description: `Failed to fetch data: ${response.statusText}`,
       });
+
+      throw new Error(`API error: ${response.status}`);
     }
+
     console.log("API response status:", response.status);
     const data = await response.json();
     changes.value = Array.isArray(data) ? data : data.responses || [];
@@ -78,7 +79,7 @@ onMounted(() => {
       <div class="max-w-4xl mx-auto px-6 py-8">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="md:text-3xl text-xl font-bold text-gray-900">
+            <h1 class="md:text-2xl text-xl font-bold text-gray-800">
               Infrastructure Costs
             </h1>
             <p class="text-sm md:text-base text-gray-600 mt-2">
