@@ -5,6 +5,9 @@ import { marked } from "marked";
 interface CostChange {
   _id?: string;
   body: string;
+  prNumber?: string;
+  author?: string;
+  branch?: string;
   date: string;
 }
 
@@ -68,25 +71,13 @@ onMounted(() => {
               Track changes in your cloud infrastructure costs
             </p>
           </div>
-          <button
+          <UButton
+            size="xl"
+            class="px-6 py-3 text-white font-bold"
             @click="fetchChanges"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium whitespace-nowrap"
           >
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
-            </svg>
             Refresh
-          </button>
+          </UButton>
         </div>
       </div>
     </header>
@@ -182,29 +173,50 @@ onMounted(() => {
         >
           <div class="flex items-start justify-between gap-4">
             <div class="flex-1">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="flex-shrink-0">
-                  <div
-                    class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100"
-                  >
-                    <svg
-                      class="h-6 w-6 text-blue-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+              <div class="mb-4">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
+                      <svg
+                        class="h-6 w-6 text-blue-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
                   </div>
+                  <time class="text-sm font-medium text-gray-500">
+                    {{ formatDate(change.date) }}
+                  </time>
                 </div>
-                <time class="text-sm font-medium text-gray-500">
-                  {{ formatDate(change.date) }}
-                </time>
+                <div class="flex flex-wrap gap-2">
+                  <UBadge
+                    v-if="change.author"
+                    color="neutral"
+                    variant="outline"
+                  >
+                    {{ change.author }}
+                  </UBadge>
+                  <UBadge v-if="change.branch" color="blue" variant="outline">
+                    {{ change.branch }}
+                  </UBadge>
+                  <UBadge
+                    v-if="change.prNumber"
+                    color="green"
+                    variant="outline"
+                  >
+                    PR #{{ change.prNumber }}
+                  </UBadge>
+                </div>
               </div>
               <div
                 class="prose prose-sm max-w-none text-gray-700"
