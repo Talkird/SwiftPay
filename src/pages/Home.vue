@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-gray-100">
     <!-- Header -->
     <header class="border-b border-gray-200 bg-white sticky top-0 z-50">
       <div class="max-w-4xl mx-auto px-6 py-8">
@@ -89,7 +89,7 @@ onMounted(() => {
       <div v-if="loading" class="flex items-center justify-center py-20">
         <div class="flex flex-col items-center gap-4">
           <div
-            class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
+            class="w-12 h-12 border-4 border-gray-200 border-t-primary rounded-full animate-spin"
           ></div>
           <p class="text-gray-600 text-lg">Loading cost changes...</p>
         </div>
@@ -98,23 +98,11 @@ onMounted(() => {
       <!-- Error State -->
       <div
         v-else-if="error"
-        class="rounded-lg bg-red-50 border border-red-200 p-6"
+        class="rounded-lg bg-red-50 border border-red-error-300 p-6"
       >
         <div class="flex gap-4">
           <div class="flex-shrink-0">
-            <svg
-              class="h-6 w-6 text-red-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 9v2m0 4v2m0 4v2M7 9h10M7 13h10M7 17h10M3 3h18a2 2 0 012 2v14a2 2 0 01-2 2H3a2 2 0 01-2-2V5a2 2 0 012-2z"
-              />
-            </svg>
+            <UIcon name="i-lucide-alert-triangle" class="size-6 text-red-500" />
           </div>
           <div>
             <h3 class="text-lg font-medium text-red-800">Error loading data</h3>
@@ -178,7 +166,7 @@ onMounted(() => {
                 <div class="flex items-center gap-3 mb-4">
                   <div class="flex-shrink-0">
                     <div
-                      class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100"
+                      class="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100"
                     >
                       <UIcon
                         name="i-lucide-circle-dollar-sign"
