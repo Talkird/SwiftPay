@@ -83,78 +83,8 @@ onMounted(() => {
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-6 py-12">
-      <!-- Loading State -->
-      <div v-if="loading" class="flex items-center justify-center py-20">
-        <div class="flex flex-col items-center gap-4">
-          <div
-            class="w-12 h-12 border-4 border-gray-200 border-t-primary rounded-full animate-spin"
-          ></div>
-          <p class="text-gray-600 text-lg">Loading cost changes...</p>
-        </div>
-      </div>
-
-      <!-- Error State -->
-      <div
-        v-else-if="error"
-        class="rounded-lg bg-red-50 border border-red-error-300 p-6"
-      >
-        <div class="flex gap-4">
-          <div class="flex-shrink-0">
-            <UIcon name="i-lucide-alert-triangle" class="size-6 text-red-500" />
-          </div>
-          <div>
-            <h3 class="text-lg font-medium text-red-800">Error loading data</h3>
-            <p class="text-red-700 mt-1">{{ error }}</p>
-            <button
-              @click="fetchChanges"
-              class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-            >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                />
-              </svg>
-              Retry
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Empty State -->
-      <div v-else-if="changes.length === 0" class="text-center py-20">
-        <svg
-          class="mx-auto h-16 w-16 text-gray-300"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M20 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"
-          />
-        </svg>
-        <h3 class="mt-4 text-lg font-medium text-gray-900">
-          No cost changes found
-        </h3>
-        <p class="text-gray-600 mt-2">
-          There are no infrastructure cost changes to display yet.
-        </p>
-      </div>
-
-      <!-- Cost Changes List -->
-      <div v-else class="space-y-4">
+    <main>
+      <div class="space-y-4">
         <div
           v-for="(change, index) in changes"
           :key="change._id || index"
