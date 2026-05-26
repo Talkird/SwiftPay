@@ -72,6 +72,7 @@ onMounted(() => {
             </p>
           </div>
           <UButton
+            loading-auto
             size="xl"
             class="px-6 py-3 text-white font-bold"
             @click="fetchChanges"
@@ -191,6 +192,7 @@ onMounted(() => {
                 </div>
                 <div class="flex flex-wrap gap-2">
                   <UBadge v-if="change.author" color="primary" variant="subtle">
+                    <UIcon name="i-lucide-user" class="size-5 text-primary" />
                     {{ change.author }}
                   </UBadge>
                   <UBadge
