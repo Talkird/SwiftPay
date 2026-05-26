@@ -13,7 +13,6 @@ export default defineConfig({
         colors: {
           primary: "blue",
           secondary: "purple",
-          neutral: "zinc",
         },
       },
     }),

@@ -206,12 +206,17 @@ onMounted(() => {
                   >
                     {{ change.author }}
                   </UBadge>
-                  <UBadge v-if="change.branch" color="blue" variant="outline">
+                  <UBadge
+                    v-if="change.branch"
+                    color="primary"
+                    variant="outline"
+                  >
+                    <UIcon name="i-lucide-git-branch-plus" class="size-5" />
                     {{ change.branch }}
                   </UBadge>
                   <UBadge
                     v-if="change.prNumber"
-                    color="green"
+                    color="primary"
                     variant="outline"
                   >
                     PR #{{ change.prNumber }}
