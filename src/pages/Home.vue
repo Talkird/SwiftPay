@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import { marked } from "marked";
 
 interface CostChange {
   _id?: string;
@@ -42,6 +43,10 @@ const formatDate = (dateString: string) => {
     hour: "2-digit",
     minute: "2-digit",
   });
+};
+
+const renderMarkdown = (content: string) => {
+  return marked(content);
 };
 
 onMounted(() => {
@@ -201,9 +206,10 @@ onMounted(() => {
                   {{ formatDate(change.date) }}
                 </time>
               </div>
-              <p class="text-gray-700 text-base leading-relaxed">
-                {{ change.body }}
-              </p>
+              <div
+                class="prose prose-sm max-w-none text-gray-700"
+                v-html="renderMarkdown(change.body)"
+              ></div>
             </div>
           </div>
         </div>
