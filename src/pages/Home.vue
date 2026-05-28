@@ -11,6 +11,7 @@ interface CostChange {
   prNumber?: string;
   author?: string;
   branch?: string;
+  pullRequestState?: "open" | "closed" | "merged";
   date: string;
 }
 
@@ -61,6 +62,30 @@ const formatDate = (dateString: string) => {
     hour: "2-digit",
     minute: "2-digit",
   });
+};
+
+const getPullRequestBadge = (state?: CostChange["pullRequestState"]) => {
+  switch (state) {
+    case "closed":
+      return {
+        label: "Closed",
+        color: "error" as const,
+        icon: "i-lucide-circle-x",
+      };
+    case "merged":
+      return {
+        label: "Merged",
+        color: "success" as const,
+        icon: "i-lucide-git-merge",
+      };
+    case "open":
+    default:
+      return {
+        label: "Open",
+        color: "warning" as const,
+        icon: "i-lucide-git-pull-request",
+      };
+  }
 };
 
 const renderMarkdown = (content: string) => {
@@ -142,6 +167,17 @@ onMounted(() => {
                     variant="outline"
                   >
                     PR #{{ change.prNumber }}
+                  </UBadge>
+                  <UBadge
+                    v-if="change.prNumber"
+                    :color="getPullRequestBadge(change.pullRequestState).color"
+                    variant="subtle"
+                  >
+                    <UIcon
+                      :name="getPullRequestBadge(change.pullRequestState).icon"
+                      class="size-5"
+                    />
+                    {{ getPullRequestBadge(change.pullRequestState).label }}
                   </UBadge>
                 </div>
               </div>
