@@ -171,7 +171,7 @@ onMounted(() => {
                   <UBadge
                     v-if="change.prNumber"
                     :color="getPullRequestBadge(change.pullRequestState).color"
-                    variant="outline"
+                    variant="solid"
                   >
                     <UIcon
                       :name="getPullRequestBadge(change.pullRequestState).icon"
